@@ -1,2 +1,2 @@
 # MS-SQL
-SoftUni - MS SQL Probles
+SoftUni - MS SQL Problems
