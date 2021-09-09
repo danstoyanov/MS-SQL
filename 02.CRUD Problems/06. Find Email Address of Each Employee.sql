@@ -1,1 +1,2 @@
-SELECT FirstName, MiddleName, LastName FROM Employees
+SELECT FirstName + '.' + LastName + '@softuni.bg' AS [TestNameInfo] 
+       FROM Employees

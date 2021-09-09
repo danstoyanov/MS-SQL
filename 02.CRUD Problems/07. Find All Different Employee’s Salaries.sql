@@ -1,1 +1,2 @@
-SELECT FirstName, MiddleName, LastName FROM Employees
+SELECT DISTINCT Salary
+       FROM Employees
