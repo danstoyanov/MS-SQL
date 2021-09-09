@@ -1,1 +1,2 @@
-SELECT FirstName, MiddleName, LastName FROM Employees
+SELECT * FROM Employees 
+       WHERE  JobTitle = 'Sales Representative'
