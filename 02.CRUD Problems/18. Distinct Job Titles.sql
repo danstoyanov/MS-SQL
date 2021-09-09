@@ -1,0 +1,2 @@
+SELECT DISTINCT JobTitle FROM Employees
+	   ORDER BY JobTitle ASC
