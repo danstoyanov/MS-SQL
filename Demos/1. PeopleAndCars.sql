@@ -10,7 +10,6 @@ CREATE TABLE CARS
 	 [Year] INT NOT NULL,
 )
 
-
 CREATE TABLE People_Test
 (
       Id INT NOT NULL PRIMARY KEY,
