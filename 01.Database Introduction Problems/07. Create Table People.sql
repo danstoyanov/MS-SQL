@@ -1,61 +1,18 @@
-CREATE TABLE Directors
+CREATE TABLE People
 (
-    Id INT NOT NULL PRIMARY KEY,
-	DirectorName VARCHAR(30),
-	Notes VARCHAR(MAX),
+     Id INT NOT NULL PRIMARY KEY,
+	 [Name] VARCHAR(200) NOT NULL,
+	 Picture VARCHAR(100) ,
+	 Height DECIMAL(15,2),
+	 [Weight] DECIMAL(15,2),
+	 Gender BIT NOT NULL,
+	 Birthdate DATETIME NOT NULL,
+	 Biography VARCHAR(MAX)
 )
 
-CREATE TABLE Genres
-(
-    Id INT NOT NULL PRIMARY KEY,
-	GenreName VARCHAR(30),
-	Notes VARCHAR(MAX),
-)
-
-CREATE TABLE Categories
-(
-    Id INT NOT NULL PRIMARY KEY,
-	CategoryName VARCHAR(30),
-	Notes VARCHAR(MAX),
-)
-
-CREATE TABLE Movies
-(
-    Id INT NOT NULL PRIMARY KEY,
-	Title VARCHAR(30),
-	DirectorId VARCHAR(30),
-	CopyrightYear DATE,
-	Lenght INT, 
-	GenreId INT,
-	CategoryId INT,
-	Rating INT,
-	Notes VARCHAR(MAX)
-)
-
-INSERT INTO Directors VALUES
-(1, 'John Michal', NULL),
-(2, 'Michal John', NULL),
-(3, 'John CALLCO', NULL),
-(4, 'Ivan Climbov', NULL),
-(5, 'Misho Birata', NULL)
-
-INSERT INTO Genres VALUES
-(1, 'Horror', NULL),
-(2, 'Action', NULL),
-(3, 'Historical', NULL),
-(4, 'TV Series', NULL),
-(5, 'Comedy', NULL)
-
-INSERT INTO Categories VALUES
-(1, 'OtherHorror', NULL),
-(2, 'OtherAction', NULL),
-(3, 'OtherHistorical', NULL),
-(4, 'OtherTV Series', NULL),
-(5, 'OtherComedy', NULL)
-
-INSERT INTO Movies VALUES
-(1, 'Titanic', 2, '2001-04-12', 130, 3, 2, 5, NULL),
-(2, 'The Killer', 2, '2002-04-12', 122, 3, 3, 5, NULL),
-(3, 'MadMax', 2, '2000-04-12', 121, 3, 1, 5, NULL),
-(4, 'StarWars', 2, '2005-04-12', 160, 3, 22, 5, NULL),
-(5, 'Indiana Jones', 2, '2001-04-12', 200, 3, 2, 5, NULL)
+INSERT INTO People (Id, Name, Picture, Height, Weight, Gender, Birthdate, Biography) VALUES
+(1, 'Stanis', NULL, 187, 78, 0, 8/8/1978, NULL),
+(2, 'Jam', NULL, 178, 88, 0, 8/8/1983, NULL),
+(3, 'Carlos', NULL, 190, 280, 0, 8/8/1938, NULL),
+(4, 'Green', NULL, 110, 80, 0, 8/8/1967, NULL),
+(5, 'Maria', NULL, 145, 48, 1, 8/8/1999, NULL)
