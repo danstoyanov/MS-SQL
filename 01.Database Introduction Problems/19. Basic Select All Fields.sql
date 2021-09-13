@@ -1,3 +1,5 @@
 USE SoftUni
 
-Select * FROM Towns, Departments, Employees
+SELECT * FROM Towns
+SELECT * FROM Departments
+SELECT * FROM Employees
