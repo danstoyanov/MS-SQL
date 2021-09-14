@@ -44,10 +44,10 @@ CREATE TABLE Manufacturers
 
 CREATE TABLE Models
 ( 
+       -- key indentity fill the first colum automaticly !!!!!
        ModelID INT NOT NULL PRIMARY KEY,
 	   [Name] VARCHAR(30) NOT NULL,
-	   ManufacturerID INT NOT NULL,
-	   FOREIGN KEY (ManufacturerID) REFERENCES Manufacturers(ManufacturerID)
+	   ManufacturerID INT NOT NULL FOREIGN KEY REFERENCES Manufacturers(ManufacturerID)
 )
 
 INSERT INTO Manufacturers (ManufacturerID, [Name], EstablishedOn)
@@ -167,7 +167,7 @@ CREATE TABLE OrderItems
 	ItemID INT NOT NULL
 	PRIMARY KEY (OrderID, ItemID)
 )
-ALTER TABLE OrderItems
+ALTER TABLE OrderItems 
 	ADD FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 ALTER TABLE OrderItems
 	ADD FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
@@ -175,6 +175,8 @@ ALTER TABLE OrderItems
 -- problem 6 ----------------------------------------------------------------------------------
 CREATE DATABASE University 
 USE University
+
+DROP DATABASE University 
 
 CREATE TABLE Majors
 (
@@ -217,11 +219,6 @@ ALTER TABLE Agenda
 	ADD FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
 ALTER TABLE Agenda
 	ADD FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
--- problem 7 ----------------------------------------------------------------------------------
-
-
--- problem 8 ----------------------------------------------------------------------------------
-
 
 -- problem 9 ----------------------------------------------------------------------------------
 
