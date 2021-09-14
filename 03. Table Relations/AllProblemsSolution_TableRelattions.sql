@@ -121,11 +121,102 @@ CREATE TABLE Teachers
 )
 
 -- problem 5 ----------------------------------------------------------------------------------
+CREATE DATABASE OnlineStore
+USE OnlineStore
 
+CREATE TABLE Cities
+(
+	CityID INT NOT NULL PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL
+)
+CREATE TABLE Customers
+(
+	CustomerID INT NOT NULL PRIMARY KEY,
+	[Name] VARCHAR(50),
+	Birthday DATE,
+	CityID INT,
+)
+ALTER TABLE Customers
+	ADD FOREIGN KEY (CityID) REFERENCES Cities(CityID)
+
+CREATE TABLE Orders
+(
+	OrderID INT NOT NULL PRIMARY KEY,
+	CustomerID INT NOT NULL,
+)
+ALTER TABLE Orders
+	ADD FOREIGN KEY	(CustomerID) REFERENCES Customers(CustomerID)
+
+CREATE TABLE ItemTypes
+(
+	ItemTypeID INT NOT NULL PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL
+)
+CREATE TABLE Items
+(
+	ItemID INT NOT NULL PRIMARY KEY,
+	[Name] VARCHAR(30) NOT NULL,
+	ItemTypeID INT NOT NULL, 
+)
+ALTER TABLE Items
+	ADD FOREIGN KEY (ItemTypeID) REFERENCES ItemTypes(ItemTypeID)
+
+CREATE TABLE OrderItems
+(
+	OrderID INT NOT NULL,
+	ItemID INT NOT NULL
+	PRIMARY KEY (OrderID, ItemID)
+)
+ALTER TABLE OrderItems
+	ADD FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+ALTER TABLE OrderItems
+	ADD FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
 
 -- problem 6 ----------------------------------------------------------------------------------
+CREATE DATABASE University 
+USE University
 
+CREATE TABLE Majors
+(
+	MajorID INT NOT NULL PRIMARY KEY,
+	[Name] VARCHAR(30) NOT NULL,
+)
+CREATE TABLE Students
+(
+	StudentID INT NOT NULL PRIMARY KEY,
+	StudentNumber INT NOT NULL,
+	StudentName VARCHAR(30),
+	MajorID INT NOT NULL
+)
+ALTER TABLE Students
+	ADD FOREIGN KEY (MajorID) REFERENCES Majors(MajorID)
 
+CREATE TABLE Payments
+(
+	PaymetID INT NOT NULL PRIMARY KEY,
+	PaymentDate DATE NOT NULL,
+	PaymentAmaout DECIMAL,
+
+	StudentID INT NOT NULL,
+	FOREIGN KEY (StudentID) REFERENCES Students (StudentID)
+)
+
+CREATE TABLE Subjects
+(
+	SubjectID INT NOT NULL PRIMARY KEY,
+	SubjectName INT NOT NULL,
+)
+
+CREATE TABLE Agenda
+(
+	StudentID INT NOT NULL,
+	SubjectID INT NOT NULL,
+	PRIMARY KEY (StudentID, SubjectID)
+)
+ALTER TABLE Agenda
+	ADD FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+ALTER TABLE Agenda
+	ADD FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
 -- problem 7 ----------------------------------------------------------------------------------
 
 
