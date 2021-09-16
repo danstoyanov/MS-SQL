@@ -39,8 +39,6 @@ CREATE TABLE Items
 ALTER TABLE Items
 	ADD FOREIGN KEY (ItemTypeID) REFERENCES ItemTypes(ItemTypeID)
 
-
-
 CREATE TABLE OrderItems
 (
 	OrderID INT NOT NULL,
