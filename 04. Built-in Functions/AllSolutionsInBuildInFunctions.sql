@@ -28,6 +28,10 @@ SELECT TownID, [Name] FROM Towns
 	WHERE [Name] LIKE 'B%' OR [Name] LIKE 'M%'
 	OR [Name] LIKE 'K%' OR [Name] LIKE 'E%'
 	ORDER BY [Name]
+-- solve with regex
+SELECT TownID, [Name] FROM Towns
+	WHERE[Name] LIKE '[MKBE]%'
+	ORDER BY [Name]
 
 -- problem 7
 SELECT DISTINCT TownID, [Name] FROM Towns
@@ -36,8 +40,14 @@ SELECT DISTINCT TownID, [Name] FROM Towns
 
 -- problem 8
 CREATE VIEW [V_EmployeesHiredAfter2000] AS
-SELECT FirstName, LastName FROM Employees 
+	SELECT FirstName, LastName 
+	FROM Employees 
 	WHERE HireDate BETWEEN '2001/01/01' AND '2005/12/31'
+-- second
+CREATE VIEW [V_EmployeesHiredAfter2000] AS
+	SELECT FirstName, LastName
+	FROM Employees 
+	WHERE DETEPART(YEAR, HireDate) > 2000
 
 -- problem 9
 SELECT FirstName, LastName FROM Employees
@@ -60,18 +70,23 @@ SELECT CountryName, IsoCode
 
 --- problem 13
 USE Geography
---- NO
+
+SELECT PeakName, RiverName, LOWER(LEFT(PeakName, LEN(PeakName) - 1) + RiverName) AS MIX
+	FROM Peaks, Rivers
+	WHERE RIGHT(PeakName, 1) = LEFT(RiverName, 1)
+	ORDER BY MIX
 
 --- problem 14
 USE Diablo
-SELECT [Name], CAST([Start] AS DATE) FROM Games
-	WHERE [Start] BETWEEN '2011' AND '2012'
-	ORDER BY [Start]
+SELECT TOP (50) [Name], FORMAT([Start], 'yyyy-MM-dd') AS [Start] 
+	FROM Games
+	WHERE DATEPART(YEAR, [Start]) BETWEEN '2011' AND '2012'
+	ORDER BY [Start], [Name]
 
 --- problem 15
-SELECT Username, Email FROM Users
-	ORDER BY RIGHT(Email, CHARINDEX('@', REVERSE(Email)) - 1),
-	[Username]
+SELECT Username, SUBSTRING(Email, CHARINDEX('@', Email) + 1, LEN(Email)) AS EmailProvider
+	FROM Users
+	ORDER BY EmailProvider, Username
 
 --- problem 16
 SELECT [Username], IpAddress FROM Users
@@ -79,3 +94,7 @@ SELECT [Username], IpAddress FROM Users
 	ORDER BY [Username]
 
 --- problem 17
+--- homework
+
+--- problem 18
+--- homework
