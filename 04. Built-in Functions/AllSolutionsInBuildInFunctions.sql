@@ -23,3 +23,31 @@ SELECT [Name] FROM Towns
 	ORDER BY [Name]
 
 -- problem 6
+SELECT TownID, [Name] FROM Towns
+	WHERE [Name] LIKE 'B%' OR [Name] LIKE 'M%'
+	OR [Name] LIKE 'K%' OR [Name] LIKE 'E%'
+	ORDER BY [Name]
+
+-- problem 7
+SELECT DISTINCT TownID, [Name] FROM Towns
+	WHERE [Name] NOT LIKE '[RBD]%'
+	ORDER BY [Name]
+
+-- problem 8
+SELECT FirstName, LastName, HireDate FROM Employees
+	WHERE HireDate BETWEEN '2001/01/01' AND '2005/12/31'
+
+-- problem 9
+SELECT FirstName, LastName FROM Employees
+	WHERE LEN(LastName) = 5
+
+-- problem 10
+SELECT EmployeeID, FirstName, LastName, Salary, 
+	DENSE_RANK() OVER (PARTITION BY Salary ORDER BY EmployeeID) AS RANK 
+	FROM Employees
+	WHERE Salary >= 10000 AND Salary <= 50000
+	ORDER BY Salary DESC
+
+--- problem 11 ---- NO
+
+--- problem 12 
