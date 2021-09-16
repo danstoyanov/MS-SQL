@@ -1,4 +1,4 @@
-SELECT PeakName, RiverName, LOWER(LEFT(PeakName, LEN(PeakName) - 1) + RiverName) AS MIX
-	FROM Peaks, Rivers
-	WHERE RIGHT(PeakName, 1) = LEFT(RiverName, 1)
-	ORDER BY MIX
+SELECT TOP (50) [Name], FORMAT([Start], 'yyyy-MM-dd') AS [Start] 
+	FROM Games
+	WHERE DATEPART(YEAR, [Start]) BETWEEN '2011' AND '2012'
+	ORDER BY [Start], [Name]
