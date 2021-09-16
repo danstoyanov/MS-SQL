@@ -9,9 +9,10 @@ SELECT FirstName, LastName FROM Employees
 	WHERE LastName LIKE '%ei%'
 
 -- problem 3
-SELECT FirstName, DepartmentID, HireDate FROM Employees
-	WHERE DepartmentID = 10 OR DepartmentID = 3
-	AND HireDate BETWEEN '1995/01/01' AND '2005/12/31'
+SELECT FirstName 
+	FROM Employees
+	WHERE (DepartmentID = 10 OR DepartmentID = 3)
+	AND (HireDate BETWEEN '01-JAN-95' AND '31-DEC-05')
 
 -- problem 4
 SELECT FirstName, LastName FROM Employees
@@ -34,7 +35,8 @@ SELECT DISTINCT TownID, [Name] FROM Towns
 	ORDER BY [Name]
 
 -- problem 8
-SELECT FirstName, LastName, HireDate FROM Employees
+CREATE VIEW [V_EmployeesHiredAfter2000] AS
+SELECT FirstName, LastName FROM Employees 
 	WHERE HireDate BETWEEN '2001/01/01' AND '2005/12/31'
 
 -- problem 9
@@ -63,6 +65,17 @@ USE Geography
 --- problem 14
 USE Diablo
 SELECT [Name], CAST([Start] AS DATE) FROM Games
-	WHERE [Start] BETWEEN '2011-01-01' AND '2012-12-31'
+	WHERE [Start] BETWEEN '2011' AND '2012'
 	ORDER BY [Start]
 
+--- problem 15
+SELECT Username, Email FROM Users
+	ORDER BY RIGHT(Email, CHARINDEX('@', REVERSE(Email)) - 1),
+	[Username]
+
+--- problem 16
+SELECT [Username], IpAddress FROM Users
+	WHERE IpAddress LIKE '___.1_%._%.___'
+	ORDER BY [Username]
+
+--- problem 17
