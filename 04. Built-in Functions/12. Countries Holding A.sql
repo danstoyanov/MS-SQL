@@ -1,4 +1,3 @@
-SELECT CountryName, IsoCode
-	FROM Countries
-	WHERE LEN(CountryName) - LEN(REPLACE(CountryName, 'A', '')) >= 3
-	ORDER BY IsoCode
+SELECT [Username], IpAddress FROM Users
+	WHERE IpAddress LIKE '___.1_%._%.___'
+	ORDER BY [Username]
