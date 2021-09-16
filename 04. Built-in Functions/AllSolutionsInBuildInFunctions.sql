@@ -51,3 +51,18 @@ SELECT EmployeeID, FirstName, LastName, Salary,
 --- problem 11 ---- NO
 
 --- problem 12 
+SELECT CountryName, IsoCode
+	FROM Countries
+	WHERE LEN(CountryName) - LEN(REPLACE(CountryName, 'A', '')) >= 3
+	ORDER BY IsoCode
+
+--- problem 13
+USE Geography
+--- NO
+
+--- problem 14
+USE Diablo
+SELECT [Name], CAST([Start] AS DATE) FROM Games
+	WHERE [Start] BETWEEN '2011-01-01' AND '2012-12-31'
+	ORDER BY [Start]
+
