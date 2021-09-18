@@ -1,4 +1,5 @@
 --- problem 1
+
 SELECT TOP (5) e.EmployeeID, e.JobTitle, a.AddressID, a.AddressText
 	FROM [Employees] e 
 	JOIN [Addresses] a ON a.AddressID = e.AddressID
@@ -46,13 +47,19 @@ SELECT TOP (5) e.EmployeeID, e.FirstName, p.[Name] AS ProjectName
 	WHERE p.StartDate > '2002-08-13 00:00:00' AND p.EndDate IS NULL
 	ORDER BY e.EmployeeID
 
---- problem 8 -- HARD !!!
-SELECT e.EmployeeID, e.FirstName, p.[Name] AS ProjectName
+--- problem 8
+SELECT 
+	e.EmployeeID, 
+	e.FirstName, 
+	(CASE
+		WHEN DATEPART(YEAR, p.StartDate) >= 2005 THEN NULL
+		ELSE p.[Name]
+	END)
+	AS ProjectName
 	FROM Employees e
 	JOIN [EmployeesProjects] ep ON e.EmployeeID = ep.EmployeeID
 	JOIN [Projects] p ON p.ProjectID = ep.ProjectID
 	WHERE e.EmployeeID = 24 
-
 
 --- problem 9
 SELECT e.EmployeeID, e.FirstName, e.ManagerID, m.FirstName AS ManagerName
@@ -92,13 +99,11 @@ SELECT c.CountryCode, m.MountainRange, p.PeakName, p.Elevation
 	ORDER BY p.Elevation DESC
 
 --- problem 13 -- HARD !!!
-USE Geography
-SELECT * FROM Mountains
-
-SELECT mc.CountryCode, m.MountainRange
+SELECT mc.CountryCode, COUNT(*) AS MountainRanges
 	FROM Mountains m
 	LEFT JOIN [MountainsCountries] mc ON m.Id = mc.MountainId
 	WHERE mc.CountryCode IN ('BG', 'US', 'RU')
+	GROUP BY mc.CountryCode
 
 --- problem 14
 SELECT TOP (5)  c.CountryName, r.RiverName
@@ -110,15 +115,24 @@ SELECT TOP (5)  c.CountryName, r.RiverName
 
 --- problem 15 --- HARD
 
---- problem 16 
+--- problem 16
+SELECT COUNT(*) AS [Count]
+	FROM Countries c
+	LEFT JOIN [MountainsCountries] mc ON c.CountryCode = mc.CountryCode
+	WHERE mc.CountryCode IS NULL
+
+--- problem 17
 SELECT TOP (5)
 	c.CountryName, 
-	p.Elevation AS [HighestPeakElevation],
-	r.[Length] AS [LongestRiverLength]
+	MAX(p.Elevation) AS [HighestPeakElevation],
+	MAX(r.[Length]) AS [LongestRiverLength]
 	FROM Countries c
-	LEFT JOIN [CountriesRivers] cr ON c.CountryCode = cr.CountryCode
-	INNER JOIN [Rivers] r ON cr.RiverId = r.Id
-	LEFT JOIN [MountainsCountries] mc ON c.CountryCode = mc.CountryCode
-	LEFT JOIN [Mountains] m ON mc.MountainId = m.Id
-	LEFT JOIN [Peaks] p ON m.Id = p.MountainId
-	ORDER BY p.Elevation DESC, r.[Length] DESC, c.CountryName
+	JOIN [CountriesRivers] cr ON c.CountryCode = cr.CountryCode
+	JOIN [Rivers] r ON cr.RiverId = r.Id
+	JOIN [MountainsCountries] mc ON c.CountryCode = mc.CountryCode
+	JOIN [Mountains] m ON mc.MountainId = m.Id
+	JOIN [Peaks] p ON m.Id = p.MountainId
+	GROUP BY CountryName
+	ORDER BY [HighestPeakElevation] DESC, [LongestRiverLength] DESC, c.CountryName
+
+--- problem 17
