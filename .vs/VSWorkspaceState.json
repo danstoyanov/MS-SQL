@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\04. Built-in Functions"
+    "\\05. Subqueries and Joins",
+    "\\Demos"
   ],
-  "SelectedNode": "\\04. Built-in Functions\\AllSolutionsInBuildInFunctions.sql",
+  "SelectedNode": "\\05. Subqueries and Joins\\09. Employee Manager.sql",
   "PreviewInSolutionExplorer": false
 }
