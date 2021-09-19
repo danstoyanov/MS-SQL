@@ -1,4 +1,7 @@
-SELECT TOP (5) e.EmployeeID, e.JobTitle, a.AddressID, a.AddressText
-	FROM [Employees] e 
-	JOIN [Addresses] a ON a.AddressID = e.AddressID
-	ORDER BY a.AddressID 
+SELECT wd.DepositGroup,
+	SUM(wd.DepositAmount) AS [TotalSum]
+	FROM WizzardDeposits wd
+	WHERE wd.MagicWandCreator = 'Ollivander family'
+	GROUP BY wd.DepositGroup
+	HAVING SUM(wd.DepositAmount) < 150000
+	ORDER BY wd.DepositGroup DESC
