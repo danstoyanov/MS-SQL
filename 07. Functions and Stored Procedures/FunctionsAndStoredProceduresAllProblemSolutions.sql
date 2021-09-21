@@ -1,5 +1,4 @@
 USE SoftUni
-
 GO
 
 -- problem 1
@@ -52,4 +51,42 @@ EXEC usp_GetEmployeesFromTown 'Sofia';
 EXEC usp_GetEmployeesFromTown 'Monroe';
 EXEC usp_GetEmployeesFromTown '';
 
+
+-- problem 5
+CREATE OR ALTER FUNCTION ufn_GetSalaryLevel(@Salary DECIMAL(18,4))
+RETURNS VARCHAR(30)
+AS
+BEGIN
+	DECLARE @SalaryLevel VARCHAR(30);
+
+	IF (@Salary < 30000)
+		SET @SalaryLevel = 'Low'
+	ELSE IF (@Salary >= 30000 AND @Salary <= 50000)
+		SET @SalaryLevel = 'Average'
+	ELSE IF (@Salary > 50000)
+		SET @SalaryLevel = 'High'
+	ELSE
+		SET @SalaryLevel = NULL
+
+	RETURN @SalaryLevel
+END
+
+-- test
+SELECT  Salary,
+		dbo.ufn_GetSalaryLevel(Salary)
+	FROM Employees
+
+-- problem 6
+CREATE OR ALTER PROC usp_EmployeesBySalaryLevel (@ParameterLevelOfSalary VARCHAR(30))
+AS
+	SELECT 
+	emp.FirstName,
+	emp.LastName
+	FROM Employees emp
+	WHERE dbo.ufn_GetSalaryLevel(Salary)  = @ParameterLevelOfSalary
+GO
+
+-- test
+EXEC usp_EmployeesBySalaryLevel 'high'
+EXEC usp_EmployeesBySalaryLevel 'Low'
 
