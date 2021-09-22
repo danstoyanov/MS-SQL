@@ -8,3 +8,5 @@ AS
 		FROM Employees
 		WHERE Salary > 35000
 GO
+
+EXEC usp_GetEmployeesSalaryAbove35000
