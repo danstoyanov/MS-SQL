@@ -5,4 +5,5 @@ AS
 		WHERE Salary >= @InputNumber
 GO
 
+-- test
 EXEC usp_GetEmployeesSalaryAboveNumber 48100
