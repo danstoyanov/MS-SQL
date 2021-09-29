@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\00. MS SQL Exams",
+    "\\00. MS SQL Exams\\Databases MSSQL Server Retake Exam - 8 April 2021"
   ],
-  "SelectedNode": "\\07. Functions and Stored Procedures",
+  "SelectedNode": "\\00. MS SQL Exams\\Databases MSSQL Server Retake Exam - 8 April 2021\\01. DDL_Dataset_08_April_21.sql",
   "PreviewInSolutionExplorer": false
 }
