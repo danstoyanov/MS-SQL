@@ -38,11 +38,6 @@ SELECT
 	GROUP BY u.Username, g.[Name]
 	ORDER BY COUNT (*) DESC
 
-	SELECT * FROM Items
-
-	SELECT * FROM GameTypeForbiddenItems
-
-
 --04. * User in Games with Their Statistics
 --05. All Items with Greater than Average Statistics
 --06. Display All Items about Forbidden Game Type
