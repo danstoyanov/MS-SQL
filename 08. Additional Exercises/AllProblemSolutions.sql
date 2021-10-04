@@ -1,6 +1,4 @@
 --01. Number of Users for Email Provider
-USE Diablo
-
 SELECT (
 SUBSTRING(Email,  CHARINDEX('@', Email) + 1, LEN (Email))) AS [Email Provider],
 	   COUNT(*) AS [Number Of Users]
